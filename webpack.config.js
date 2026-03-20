@@ -6,7 +6,7 @@ module.exports = {
     popup: './src/popup/index.jsx',
     background: './src/background/service-worker.js',
     content: './src/content/content-script.js',
-    options: './src/options/options.jsx'
+    options: './src/options/options-entry.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       }
     ]
   },
@@ -37,8 +37,7 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: 'public', to: '.' },
-        { from: 'src/styles/output.css', to: 'styles/output.css', noErrorOnMissing: true }
+        { from: 'public', to: '.' }
       ]
     })
   ],
